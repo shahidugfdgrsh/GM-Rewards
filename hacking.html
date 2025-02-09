@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Processing...</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Processing Request...</h1>
+        <pre id="terminal"></pre>
+    </div>
+
+    <script>
+        let terminal = document.getElementById("terminal");
+        let messages = [
+            "Connecting to game servers...",
+            "Bypassing security protocols...",
+            "Injecting currency values...",
+            "Finalizing transaction...",
+            "Request complete!"
+        ];
+        let index = 0;
+
+        function displayNextMessage() {
+            if (index < messages.length) {
+                terminal.innerHTML += messages[index] + "\n";
+                index++;
+                setTimeout(displayNextMessage, 1000);
+            } else {
+                setTimeout(showResult, 2000);
+            }
+        }
+
+        function showResult() {
+            let success = Math.random() < 0.4; // 40% success rate
+            let gameID = localStorage.getItem("gameID");
+            let amount = localStorage.getItem("amount");
+
+            if (success) {
+                terminal.innerHTML += `\n✅ Success! ${amount} currency sent to ${gameID}`;
+            } else {
+                terminal.innerHTML += "\n❌ Transaction failed. Try again.";
+            }
+
+            setTimeout(() => {
+                window.location.href = "index.html"; // Redirect to home
+            }, 3000);
+        }
+
+        displayNextMessage();
+    </script>
+
+</body>
+</html>
