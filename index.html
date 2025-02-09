@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Currency Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Select a Game</h1>
+        <button onclick="selectGame('Free Fire')">Free Fire</button>
+        <button onclick="selectGame('PUBG')">PUBG</button>
+        <button onclick="selectGame('CODM')">CODM</button>
+        <button onclick="selectGame('Fortnite')">Fortnite</button>
+    </div>
+
+    <script>
+        function selectGame(game) {
+            localStorage.setItem("selectedGame", game);
+            window.location.href = "enter-details.html";
+        }
+    </script>
+
+</body>
+</html>
