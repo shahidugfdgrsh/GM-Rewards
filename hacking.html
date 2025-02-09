@@ -16,21 +16,37 @@
     <script>
         let terminal = document.getElementById("terminal");
         let messages = [
+            "Initializing system...",
             "Connecting to game servers...",
-            "Bypassing security protocols...",
-            "Injecting currency values...",
-            "Finalizing transaction...",
-            "Request complete!"
+            "Fetching user data...",
+            "Username found: " + localStorage.getItem("gameID"),
+            "Generating secure access token...",
+            "Bypassing firewall security...",
+            "Injecting custom currency script...",
+            "Requesting server approval...",
+            "Decrypting transaction data...",
+            "Finalizing process...",
+            "Completing final steps..."
         ];
+
+        function getRandomCode() {
+            let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            let result = "";
+            for (let i = 0; i < 12; i++) {
+                result += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return result;
+        }
+
         let index = 0;
 
         function displayNextMessage() {
             if (index < messages.length) {
                 terminal.innerHTML += messages[index] + "\n";
                 index++;
-                setTimeout(displayNextMessage, 1000);
+                setTimeout(displayNextMessage, Math.random() * 2000 + 1000); // 1 to 3 sec delay
             } else {
-                setTimeout(showResult, 2000);
+                setTimeout(showResult, 3000); // Longer suspense before result
             }
         }
 
@@ -41,13 +57,14 @@
 
             if (success) {
                 terminal.innerHTML += `\n✅ Success! ${amount} currency sent to ${gameID}`;
+                terminal.innerHTML += `\nTransaction ID: ${getRandomCode()}`;
             } else {
                 terminal.innerHTML += "\n❌ Transaction failed. Try again.";
             }
 
             setTimeout(() => {
                 window.location.href = "index.html"; // Redirect to home
-            }, 3000);
+            }, 5000);
         }
 
         displayNextMessage();
