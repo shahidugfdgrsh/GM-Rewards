@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter Details</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1 id="gameTitle"></h1>
+        <form onsubmit="startHacking(event)">
+            <label for="gameID" id="idLabel">Game ID:</label>
+            <input type="text" id="gameID" required>
+
+            <label for="amount">Amount:</label>
+            <input type="number" id="amount" required>
+
+            <button type="submit">Confirm</button>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let game = localStorage.getItem("selectedGame");
+            document.getElementById("gameTitle").innerText = `Enter details for ${game}`;
+            
+            if (game === "Fortnite") {
+                document.getElementById("idLabel").innerText = "Username:";
+            }
+        });
+
+        function startHacking(event) {
+            event.preventDefault();
+            let gameID = document.getElementById("gameID").value;
+            let amount = document.getElementById("amount").value;
+
+            localStorage.setItem("gameID", gameID);
+            localStorage.setItem("amount", amount);
+
+            window.location.href = "hacking.html";
+        }
+    </script>
+
+</body>
+</html>
